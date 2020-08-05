@@ -1,5 +1,5 @@
 // import express from node_modules
-const express = required("express");
+const express = require("express");
 
 // import the "fake" database you made in a separate file
 
@@ -11,7 +11,9 @@ server.use(express.json());
 
 // server endpoints go here // - eg all the get, post, delete, etc
 
-
+server.get("/", (req, res) => {
+    res.json({ message: "Hello, this is the server" });
+});
 
 // server endpoints end here //
 
