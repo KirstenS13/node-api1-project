@@ -1,5 +1,6 @@
 // nodemon is a utility that automatically restarts your server when changes are made
 // note: in package.json under "scripts", it should be "server": "nodemon the-name-of-the-file-that-has-server.listen-in-it"
+// NOTE: TO RUN THE SERVER RUN "npm run server"
 
 // import express from node_modules
 const express = require("express");
@@ -67,7 +68,7 @@ server.delete("/api/users/:id", (req, res) => {
         // delete the user
         db.deleteUser(id);
         // let the client know the user was deleted
-        res.status(200).json({ message: "User deleted" });
+        res.status(204).end();
     } else {
         // let the client know the user could not be deleted
         res.status(404).json({ message: "User not found, could not delete", attemptedId: id });
@@ -75,6 +76,25 @@ server.delete("/api/users/:id", (req, res) => {
 });
 
 // update a user
+server.put("/api/users/:id", (req, res) => {
+    // grab the id from the url
+    const id = req.params.id;
+
+    // grab the user by id from the database to see if they exist
+    const user = db.getUserById(id);
+
+    // confirm the user exists
+    if (user) {
+        // grab the updated user by sending updateUser the new user data
+        const updatedUser = db.updateUser(id, { name: req.body.name, bio: req.body.bio });
+
+        // send back the updated user
+        res.status(200).json({ message: "User updated", updatedUser: updatedUser });
+    } else {
+        // let the client know the user could not be updated
+        res.status(404).json({ message: "User not found, could not update", attemptedId: id });
+    }
+});
 
 // server endpoints end here //
 
