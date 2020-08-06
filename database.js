@@ -7,7 +7,7 @@
 
 // User Schema
 /* {
-    id: number,
+    id: number as string,
     name: "string",
     bio: "string"
 } */
@@ -16,17 +16,17 @@
 // use "let" not "const" because we need to add and delete from this array
 let users = [
     {
-        id: 1,
+        id: "1",
         name: "Harry Potter",
         bio: "The Chosen One"
     },
     {
-        id: 2,
+        id: "2",
         name: "Hermione Granger",
         bio: "The Smart One"
     },
     {
-        id: 3,
+        id: "3",
         name: "Ronald Weasley",
         bio: "The Funny One"
     }
