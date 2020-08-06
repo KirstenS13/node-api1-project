@@ -64,4 +64,10 @@ const updateUser = (id, user) => {
 };
 
 // Export the functions so the endpoints can use them
-export { getUsers, getUserById, createUser, deleteUser, updateUser };
+module.exports = {
+    getUsers,
+    getUserById,
+    createUser,
+    deleteUser,
+    updateUser
+}
