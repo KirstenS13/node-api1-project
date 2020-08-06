@@ -46,6 +46,11 @@ server.get("/api/users/:id", (req, res) => {
 });
 
 // create a new user
+server.post("/api/users", (req, res) => {
+    const newUser = db.createUser({ name: req.body.name, bio: req.body.bio });
+
+    res.status(201).json({ message: "New user created", newUser: newUser });
+});
 
 // delete a user
 

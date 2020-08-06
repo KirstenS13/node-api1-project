@@ -14,6 +14,7 @@
 
 // Create the user array
 // use "let" not "const" because we need to add and delete from this array
+// make sure the ids are strings because they are strings in the request objects
 let users = [
     {
         id: "1",
