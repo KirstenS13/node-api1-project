@@ -1,3 +1,4 @@
+// nodemon is a utility that automatically restarts your server when changes are made
 // import express from node_modules
 const express = require("express");
 
