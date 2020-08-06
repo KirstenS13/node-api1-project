@@ -47,12 +47,32 @@ server.get("/api/users/:id", (req, res) => {
 
 // create a new user
 server.post("/api/users", (req, res) => {
+    // grab the new user the database created from the object passed in
     const newUser = db.createUser({ name: req.body.name, bio: req.body.bio });
 
+    // send back the user created
     res.status(201).json({ message: "New user created", newUser: newUser });
 });
 
 // delete a user
+server.delete("/api/users/:id", (req, res) => {
+    // grab the id from the url
+    const id = req.params.id;
+
+    // grab the user by id
+    const user = db.getUserById(id);
+
+    // confirm the user exists
+    if (user) {
+        // delete the user
+        db.deleteUser(id);
+        // let the client know the user was deleted
+        res.status(200).json({ message: "User deleted" });
+    } else {
+        // let the client know the user could not be deleted
+        res.status(404).json({ message: "User not found, could not delete", attemptedId: id });
+    }
+});
 
 // update a user
 
